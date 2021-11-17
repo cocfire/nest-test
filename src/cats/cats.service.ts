@@ -6,14 +6,14 @@ import { Cat, CatDocument } from './schemas/cat.schema';
 
 @Injectable()
 export class CatsService {
-    constructor(@InjectModel('Cat') private catModel: Model<CatDocument>) { }
+    constructor(@InjectModel(Cat.name) private catModel: Model<CatDocument>) { }
 
-    create(cat: CreateCatDto) {
+    async create(cat: CreateCatDto): Promise<Cat> {
         const createdCat = new this.catModel(cat);
         return createdCat.save();
     }
 
-    findAll(): any {
+    async findAll(): Promise<Cat[]> {
         return this.catModel.find().exec();
     }
 }

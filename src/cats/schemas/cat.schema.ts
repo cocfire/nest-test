@@ -12,4 +12,4 @@ export class Cat extends Document {
     age: number;
 }
 
-export const CatsSchema = SchemaFactory.createForClass(Cat);
+export const CatSchema = SchemaFactory.createForClass(Cat);

@@ -7,15 +7,15 @@ import { TransformInterceptor } from 'src/common/interceptor/transform.intercept
 @Controller('dogs')
 @UseInterceptors(TransformInterceptor)
 export class DogsController {
-  constructor(private catsService: CatsService) { }
-  @Get()
-  findAll(): Cat[] {
-    return this.catsService.findAll();
-  }
+  // constructor(private catsService: CatsService) { }
+  // @Get()
+  // async findAll() {
+  //   return this.catsService.findAll();
+  // }
 
-  @Post()
-  async addCat(@Body() cat: CreateCatDto): Promise<CreateCatDto> {
-    this.catsService.create(cat);
-    return cat;
-  }
+  // @Post()
+  // async addCat(@Body() cat: CreateCatDto): Promise<CreateCatDto> {
+  //   this.catsService.create(cat);
+  //   return cat;
+  // }
 }

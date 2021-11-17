@@ -13,23 +13,24 @@ export class CatsController {
   constructor(private catsService: CatsService) { }
 
   @Get()
-  findAll(@User() user: any): string {
+  async findAll(@User() user: any): Promise<string> {
     const cats = this.catsService.findAll();
     console.log(`This is Catscontroller!`);
     console.log(`System has got an user named: ${user}!`);
-    if (cats.length == 0) {
+    console.log(`CatsController: ${cats}!`);
+    if ((await cats).length == 0) {
       return `Now you see, you don't have any cat!`;
     } else {
       let names = '';
-      for (const cat of cats) {
+      for (const cat of await cats) {
         names += cat.name + ',';
       }
       names = names.substr(0, names.length - 1);
       console.log(names);
-      if (cats.length == 1) {
+      if ((await cats).length == 1) {
         return `You have an cat, it is ${names}`;
       } else {
-        return `You have ${cats.length} cats, they are ${names}`;
+        return `You have ${(await cats).length} cats, they are ${names}`;
       }
     }
   }
