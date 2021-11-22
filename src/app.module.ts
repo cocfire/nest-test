@@ -19,13 +19,16 @@ import { AppResolver } from './gql/app.resoler';
   imports: [
     CatsModule,
     DogsModule,
-    MongooseModule.forRoot('mongodb://localhost/nest_test'),
-    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.DB_URL),
     AuthModule, 
     UsersModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.graph',
       context: ({ req }) => ({ req }), // 新增这行,将数据挂载到context上
+    }),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],

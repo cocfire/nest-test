@@ -8,7 +8,8 @@ import { User } from 'src/users/user.dto';
 export class AppResolver {
     @Query(() => String) // 定义一个查询,并且返回字符类型
     hello() {
-        return 'hello world';
+        
+        return process.env.DB_URL;
     }
 
     @UseGuards(JwtAuthGuard)
